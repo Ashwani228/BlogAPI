@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Animated Blog</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>My Blog</h1>
+      <p>Exploring ideas, projects, and stories.</p>
+    </header>
+    <form action="/compose" method="POST" class="post-form">
+      <input type="text" name="postTitle" placeholder="Enter Post Title" required>
+      <textarea name="postBody" placeholder="Write your post here..." required></textarea>
+      <button type="submit">Create Post</button>
+    </form>
+    <hr>
+    <div class="posts">
+      <% posts.forEach(function(post) { %>
+        <div class="post">
+          <h2><%= post.title %></h2>
+          <p><%= post.content %></p>
+          <div class="post-actions">
+            <form action="/delete/<%= post.id %>" method="POST" class="delete-form">
+              <button type="submit" class="delete-button">Delete Post</button>
+            </form>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+  <script src="/js/index.js"></script>
+</body>
+</html>

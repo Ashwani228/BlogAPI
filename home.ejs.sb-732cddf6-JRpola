@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Blog</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Blog Posts</h1>
+    <form action="/compose" method="POST">
+      <input type="text" name="postTitle" placeholder="Post Title" required>
+      <textarea name="postBody" placeholder="Post Content" required></textarea>
+      <button type="submit">Create Post</button>
+    </form>
+    <hr>
+    <div class="posts">
+      <% posts.forEach(function(post) { %>
+        <div class="post">
+          <h2><%= post.title %></h2>
+          <p><%= post.content %></p>
+          <form action="/delete/<%= post.id %>" method="POST" class="delete-form">
+            <button type="submit">Delete Post</button>
+          </form>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+  <script src="/js/index.js"></script>
+</body>
+</html>
